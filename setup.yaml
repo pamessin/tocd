@@ -1,0 +1,14 @@
+- hosts: localhost
+  tasks:
+    - name: install git
+      yum: name=git state=latest
+      become: yes
+      become_method: sudo
+    - name: pull git project pet clinic
+      git: repo=https://github.com/pamessin/spring-petclinic.git dest=/home/ec2-user/petclinic
+      become: yes
+      become_method: sudo
+    - name: pull git project tocd
+      git: repo=https://github.com/pamessin/tocd.git dest=/home/ec2-user/tocd
+      become: yes
+      become_method: sudo
