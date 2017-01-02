@@ -9,7 +9,7 @@
       become: yes
       become_method: sudo
     - name: pull git project tocd
-      git: repo=https://github.com/pamessin/tocd.git dest=/home/ec2-user/tocd force=yes
+      git: repo=https://github.com/pamessin/tocd.git dest=/home/ec2-user/tocd update=no
       become: yes
       become_method: sudo
     - name: install docker
@@ -17,7 +17,7 @@
       become: yes
       become_method: sudo
     - name: adding docker to user group
-      user: name=ec2-user append=yes group=docker
+      user: name=ec2-user append=yes groups=docker
       become: yes
       become_method: sudo
     - name: start the docker service
