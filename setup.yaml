@@ -9,6 +9,18 @@
       become: yes
       become_method: sudo
     - name: pull git project tocd
-      git: repo=https://github.com/pamessin/tocd.git dest=/home/ec2-user/tocd
+      git: repo=https://github.com/pamessin/tocd.git dest=/home/ec2-user/tocd force=yes
+      become: yes
+      become_method: sudo
+    - name: install docker
+      yum: name=docker state=latest
+      become: yes
+      become_method: sudo
+    - name: adding docker to user group
+      user: name=ec2-user append=yes group=docker
+      become: yes
+      become_method: sudo
+    - name: start the docker service
+      service: name=docker state=started
       become: yes
       become_method: sudo
